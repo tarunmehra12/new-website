@@ -3,424 +3,643 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarun - Coming Soon | Portfolio</title>
-    <meta name="description" content="Tarun's portfolio is coming soon. Something amazing is being crafted.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- React & ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+    <title>CONSTRUCTION ZONE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton:wght@400&family=Russo+One&display=swap');
+        
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Anton', sans-serif;
+            background: #0d0d0d;
+            background-image: 
+                radial-gradient(circle at 20% 50%, #1a0000 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #330000 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, #1a0000 0%, transparent 50%);
+            min-height: 100vh;
             overflow-x: hidden;
-            min-height: 100vh; /* Ensure page is scrollable */
-        }
-        .gradient-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            color: #fff;
         }
         
-        .gradient-accent {
-            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+        /* Industrial Noise Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 69, 0, 0.03) 2px,
+                    rgba(255, 69, 0, 0.03) 4px
+                );
+            z-index: 1;
         }
         
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Sparks and debris */
+        .debris {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
         }
         
-        .text-gradient {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .spark {
+            position: absolute;
+            width: 3px;
+            height: 20px;
+            background: linear-gradient(to bottom, #ff4500, #ff8c00, transparent);
+            border-radius: 2px;
         }
-
-        .hero-gradient {
-            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.15) 0%, transparent 70%),
-                        radial-gradient(ellipse at top left, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at bottom right, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
-                        linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        
+        /* Industrial elements */
+        .industrial-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .metal-beam {
+            position: absolute;
+            background: linear-gradient(45deg, #333, #666, #333);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+        }
+        
+        .beam-1 { width: 200px; height: 8px; top: 20%; left: 10%; transform: rotate(15deg); }
+        .beam-2 { width: 150px; height: 6px; bottom: 30%; right: 15%; transform: rotate(-30deg); }
+        .beam-3 { width: 100px; height: 10px; top: 60%; left: 5%; transform: rotate(45deg); }
+        
+        .warning-tape {
+            position: absolute;
+            height: 40px;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffff00 0px,
+                #ffff00 20px,
+                #000 20px,
+                #000 40px
+            );
+            opacity: 0.8;
+        }
+        
+        .tape-1 { width: 300px; top: 15%; right: 10%; transform: rotate(-10deg); }
+        .tape-2 { width: 250px; bottom: 25%; left: 20%; transform: rotate(20deg); }
+        
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .danger-zone {
+            background: 
+                linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 40, 40, 0.95)),
+                radial-gradient(circle at center, rgba(255, 69, 0, 0.1) 0%, transparent 70%);
+            border: 3px solid #ff4500;
+            border-radius: 0;
+            padding: 50px 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 0 50px rgba(255, 69, 0, 0.3),
+                inset 0 0 50px rgba(0, 0, 0, 0.5);
+            transform: perspective(1000px) rotateX(2deg);
+        }
+        
+        /* Corner bolts */
+        .danger-zone::before,
+        .danger-zone::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #666, #333);
+            border: 2px solid #999;
+            border-radius: 50%;
+        }
+        
+        .danger-zone::before {
+            top: -10px;
+            left: -10px;
+        }
+        
+        .danger-zone::after {
+            bottom: -10px;
+            right: -10px;
+        }
+        
+        .bolt-1, .bolt-2 {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #666, #333);
+            border: 2px solid #999;
+            border-radius: 50%;
+        }
+        
+        .bolt-1 { top: -10px; right: -10px; }
+        .bolt-2 { bottom: -10px; left: -10px; }
+        
+        /* Brutal Icon */
+        .skull-icon {
+            font-size: 100px;
+            color: #ff4500;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-shadow: 
+                0 0 20px #ff4500,
+                2px 2px 4px #000;
+            animation: menacing 3s ease-in-out infinite;
+        }
+        
+        @keyframes menacing {
+            0%, 100% { transform: scale(1) rotateZ(0deg); }
+            25% { transform: scale(1.1) rotateZ(-2deg); }
+            75% { transform: scale(1.1) rotateZ(2deg); }
+        }
+        
+        /* Aggressive Title */
+        .brutal-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ff4500;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 
+                3px 3px 0px #000,
+                6px 6px 0px #333,
+                0 0 30px #ff4500;
+            position: relative;
+        }
+        
+        .brutal-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ff4500, transparent);
+        }
+        
+        .warning-text {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.1rem;
+            color: #ffff00;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 40px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+        
+        /* Industrial Form */
+        .metal-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .steel-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 18px 20px;
+            border: none;
+            background: #1a1a1a;
+            color: #fff;
+            border: 3px solid #666;
+            border-left: 5px solid #ff4500;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .steel-input:focus {
+            border-color: #ff4500;
+            box-shadow: 
+                0 0 20px rgba(255, 69, 0, 0.5),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: #222;
+        }
+        
+        .steel-input::placeholder {
+            color: #888;
+            font-weight: bold;
+        }
+        
+        .danger-btn {
+            padding: 18px 35px;
+            background: linear-gradient(45deg, #ff4500, #ff6600);
+            color: #000;
+            border: 3px solid #ff8800;
+            font-size: 16px;
+            font-weight: 900;
+            font-family: 'Bebas Neue', cursive;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .danger-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
+        }
+        
+        .danger-btn:hover::before {
+            left: 100%;
+        }
+        
+        .danger-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6);
+            background: linear-gradient(45deg, #ff6600, #ff8800);
+        }
+        
+        /* Progress Welder */
+        .welder-progress {
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .welder-label {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            color: #ff4500;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .welder-bar {
+            width: 100%;
+            height: 25px;
+            background: #1a1a1a;
+            border: 2px solid #666;
+            border-left: 5px solid #ff4500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .weld-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4500, #ff8800, #ffaa00);
+            width: 78%;
+            position: relative;
+            animation: weldSpark 1.5s ease-in-out infinite alternate;
+        }
+        
+        .spark-trail {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff4500;
+            animation: sparkFly 0.8s linear infinite;
+        }
+        
+        @keyframes weldSpark {
+            0% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 136, 0, 1); }
+        }
+        
+        @keyframes sparkFly {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(20px, -10px) scale(0); opacity: 0; }
+        }
+        
+        .footer-text {
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Warning Signs */
+        .warning-sign {
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 60px;
+            height: 60px;
+            background: #ffff00;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            transform: rotate(-15deg);
+            border: 3px solid #000;
+        }
+        
+        .caution-sign {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 60px;
+            height: 60px;
+            background: #ff4500;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            transform: rotate(15deg);
+            border: 3px solid #000;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .danger-zone {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .brutal-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .skull-icon {
+                font-size: 70px;
+            }
+            
+            .metal-form {
+                flex-direction: column;
+            }
+            
+            .steel-input {
+                min-width: auto;
+            }
+            
+            .warning-sign, .caution-sign {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="hero-gradient text-white font-inter overflow-hidden">
+<body>
+    <!-- Industrial Background Elements -->
+    <div class="industrial-bg">
+        <div class="metal-beam beam-1"></div>
+        <div class="metal-beam beam-2"></div>
+        <div class="metal-beam beam-3"></div>
+        <div class="warning-tape tape-1"></div>
+        <div class="warning-tape tape-2"></div>
+    </div>
     
-    <!-- React App Container -->
-    <div id="root"></div>
-
-    <!-- React Component Script -->
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-
-        // Animated Background Component
-        const AnimatedBackground = () => {
-            const canvasRef = useRef(null);
-
-            useEffect(() => {
-                const canvas = canvasRef.current;
-                const ctx = canvas.getContext('2d');
-                let particles = [];
-                let animationFrameId;
-
-                const resizeCanvas = () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                };
-
-                const createParticles = () => {
-                    particles = [];
-                    for (let i = 0; i < 80; i++) {
-                        particles.push({
-                            x: Math.random() * canvas.width,
-                            y: Math.random() * canvas.height,
-                            radius: Math.random() * 2 + 1,
-                            vx: (Math.random() - 0.5) * 0.5,
-                            vy: (Math.random() - 0.5) * 0.5,
-                            opacity: Math.random() * 0.5 + 0.2,
-                            color: Math.random() > 0.5 ? 'rgba(102, 126, 234,' : 'rgba(255, 107, 107,'
-                        });
-                    }
-                };
-
-                const animate = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
-                    particles.forEach(particle => {
-                        particle.x += particle.vx;
-                        particle.y += particle.vy;
-                        
-                        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-                        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                        
-                        ctx.beginPath();
-                        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = particle.color + particle.opacity + ')';
-                        ctx.fill();
-                    });
-                    
-                    animationFrameId = requestAnimationFrame(animate);
-                };
-
-                resizeCanvas();
-                createParticles();
-                animate();
-
-                window.addEventListener('resize', () => {
-                    resizeCanvas();
-                    createParticles();
-                });
-
-                return () => {
-                    window.removeEventListener('resize', resizeCanvas);
-                    cancelAnimationFrame(animationFrameId);
-                };
-            }, []);
-
-            return (
-                <canvas
-                    ref={canvasRef}
-                    className="fixed inset-0 pointer-events-none z-0"
-                />
-            );
-        };
-
-        // Loading Screen Component
-        const LoadingScreen = ({ isLoading }) => {
-            const [progress, setProgress] = useState(0);
-
-            useEffect(() => {
-                if (isLoading) {
-                    const timer = setInterval(() => {
-                        setProgress(prev => {
-                            if (prev >= 100) {
-                                clearInterval(timer);
-                                return 100;
-                            }
-                            return prev + Math.random() * 15;
-                        });
-                    }, 150);
-
-                    return () => clearInterval(timer);
-                }
-            }, [isLoading]);
-
-            if (!isLoading) return null;
-
-            return (
-                <div className="fixed inset-0 bg-gray-900 z-50 flex items-center justify-center">
-                    <div className="text-center">
-                        <div className="w-32 h-32 mb-8 mx-auto gradient-primary rounded-3xl flex items-center justify-center relative animate-glow">
-                            <span className="text-5xl font-black text-white">T</span>
-                            <div className="absolute inset-0 border-4 border-transparent border-t-primary-500 rounded-3xl animate-spin"></div>
-                        </div>
-                        <h2 className="text-2xl font-bold text-white mb-4">Crafting Something Amazing</h2>
-                        <p className="text-gray-400 mb-8">Please wait while we prepare the experience...</p>
-                        <div className="w-80 h-2 bg-gray-800 rounded-full mx-auto">
-                            <div 
-                                className="h-full gradient-primary rounded-full transition-all duration-300 ease-out"
-                                style={{ width: `${Math.min(progress, 100)}%` }}
-                            ></div>
-                        </div>
-                        <p className="text-sm text-gray-500 mt-4">{Math.floor(progress)}%</p>
+    <!-- Debris and Sparks -->
+    <div class="debris" id="debris"></div>
+    
+    <div class="container">
+        <div class="danger-zone" id="dangerZone">
+            <div class="bolt-1"></div>
+            <div class="bolt-2"></div>
+            <div class="warning-sign">⚠</div>
+            <div class="caution-sign">☠</div>
+            
+            <div class="skull-icon" id="skullIcon">⚡</div>
+            
+            <div class="warning-text">⚠ under construction  ⚠</div>
+            <h1 class="brutal-title" id="title">Tarun IT</h1>
+            <p class="subtitle" id="subtitle">Site under heavy construction. please wait for complete work .</p>
+            
+            <!-- Welder Progress -->
+            <div class="welder-progress">
+                <div class="welder-label">⚡ Site Progress: 78% Complete</div>
+                <div class="welder-bar">
+                    <div class="weld-fill">
+                        <div class="spark-trail"></div>
                     </div>
                 </div>
-            );
-        };
-
-        // Countdown Timer Component
-        const CountdownTimer = () => {
-            const [timeLeft, setTimeLeft] = useState({
-                days: 30,
-                hours: 12,
-                minutes: 45,
-                seconds: 30
-            });
-
-            useEffect(() => {
-                const targetDate = new Date();
-                targetDate.setDate(targetDate.getDate() + 30);
-
-                const timer = setInterval(() => {
-                    const now = new Date().getTime();
-                    const distance = targetDate.getTime() - now;
-
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    setTimeLeft({ days, hours, minutes, seconds });
-                }, 1000);
-
-                return () => clearInterval(timer);
-            }, []);
-
-            const CountdownCard = ({ value, label, delay }) => (
-                <div 
-                    className="glass-morphism rounded-3xl p-8 text-center transform hover:scale-105 transition-all duration-300 animate-slideUp"
-                    style={{ animationDelay: `${delay}ms` }}
-                >
-                    <div className="text-5xl md:text-6xl font-black text-white mb-3 animate-pulse-slow">
-                        {value.toString().padStart(2, '0')}
-                    </div>
-                    <div className="text-sm text-gray-300 uppercase tracking-wider font-semibold">{label}</div>
-                </div>
-            );
-
-            return (
-                <div className="mb-16">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                        <CountdownCard value={timeLeft.days} label="Days" delay={0} />
-                        <CountdownCard value={timeLeft.hours} label="Hours" delay={200} />
-                        <CountdownCard value={timeLeft.minutes} label="Minutes" delay={400} />
-                        <CountdownCard value={timeLeft.seconds} label="Seconds" delay={600} />
-                    </div>
-                </div>
-            );
-        };
-
-        // Email Subscription Component
-        const EmailSubscription = () => {
-            const [email, setEmail] = useState('');
-            const [isSubmitted, setIsSubmitted] = useState(false);
-            const [isLoading, setIsLoading] = useState(false);
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                setIsLoading(true);
+            </div>
+            
+            <!-- Industrial Form -->
+            <form class="metal-form" onsubmit="handleSubmit(event)">
+                <input type="email" class="steel-input" placeholder=" EMAIL FOR EARLY ACCESS " required id="emailInput">
+                <button type="submit" class="danger-btn" id="submitBtn">
+                    <i class="fas fa-hard-hat"></i> SUMIT
+                </button>
+            </form>
+            
+            <p class="footer-text">⚠ THANKS FOR VISIT.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create flying sparks
+        function createSparks() {
+            const debrisContainer = document.getElementById('debris');
+            for (let i = 0; i < 20; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = Math.random() * 100 + '%';
+                spark.style.top = Math.random() * 100 + '%';
+                debrisContainer.appendChild(spark);
                 
-                // Simulate API call
-                setTimeout(() => {
-                    setIsLoading(false);
-                    setIsSubmitted(true);
-                    
-                    setTimeout(() => {
-                        setIsSubmitted(false);
-                        setEmail('');
-                    }, 3000);
-                }, 1500);
-            };
-
-            return (
-                <div className="animate-slideUp" style={{ animationDelay: '1000ms' }}>
-                    <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-8">
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email"
-                                className="flex-1 px-6 py-4 bg-gray-800/50 border border-gray-600 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                                required
-                                disabled={isLoading || isSubmitted}
-                            />
-                            <button
-                                type="submit"
-                                className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 ${
-                                    isSubmitted 
-                                        ? 'bg-green-500 text-white transform scale-105' 
-                                        : isLoading
-                                        ? 'bg-gray-600 text-white cursor-not-allowed'
-                                        : 'gradient-primary text-white hover:shadow-lg hover:shadow-primary-500/25 transform hover:scale-105'
-                                }`}
-                                disabled={isLoading || isSubmitted}
-                            >
-                                {isSubmitted ? (
-                                    <>
-                                        <i className="fas fa-check mr-2"></i>
-                                        Subscribed!
-                                    </>
-                                ) : isLoading ? (
-                                    <>
-                                        <i className="fas fa-spinner fa-spin mr-2"></i>
-                                        Subscribing...
-                                    </>
-                                ) : (
-                                    <>
-                                        <i className="fas fa-bell mr-2"></i>
-                                        Notify Me
-                                    </>
-                                )}
-                            </button>
-                        </div>
-                    </form>
-
-                    <div className="text-center text-sm text-gray-400 mb-8">
-                        <div className="flex items-center justify-center space-x-6">
-                            <div className="flex items-center">
-                                <i className="fas fa-check text-green-400 mr-2"></i>
-                                No spam, ever
-                            </div>
-                            <div className="flex items-center">
-                                <i className="fas fa-check text-green-400 mr-2"></i>
-                                Early access
-                            </div>
-                            <div className="flex items-center">
-                                <i className="fas fa-check text-green-400 mr-2"></i>
-                                Exclusive updates
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        // Social Links Component
-        const SocialLinks = () => {
-            const socials = [
-                { name: 'GitHub', icon: 'fab fa-github', link: '#', color: 'hover:text-purple-400' },
-                { name: 'LinkedIn', icon: 'fab fa-linkedin', link: '#', color: 'hover:text-blue-400' },
-                { name: 'Twitter', icon: 'fab fa-twitter', link: '#', color: 'hover:text-blue-300' },
-                { name: 'Instagram', icon: 'fab fa-instagram', link: '#', color: 'hover:text-pink-400' }
-            ];
-
-            return (
-                <div className="animate-slideUp" style={{ animationDelay: '1200ms' }}>
-                    <div className="flex justify-center space-x-6 mb-8">
-                        {socials.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.link}
-                                className={`w-14 h-14 glass-morphism rounded-2xl flex items-center justify-center text-gray-300 ${social.color} transition-all duration-300 transform hover:scale-110 hover:rotate-12`}
-                                title={social.name}
-                            >
-                                <i className={`${social.icon} text-xl`}></i>
-                            </a>
-                        ))}
-                    </div>
-                    
-                    <p className="text-center text-gray-400 text-sm">
-                        Follow my journey • <a href="mailto:hello@tarun.dev" className="text-primary-400 hover:text-primary-300 transition-colors">hello@tarun.dev</a>
-                    </p>
-                </div>
-            );
-        };
-
-        // Main App Component
-        const App = () => {
-            const [isLoading, setIsLoading] = useState(true);
-
-            useEffect(() => {
-                const timer = setTimeout(() => {
-                    setIsLoading(false);
-                }, 4000);
-
-                return () => clearTimeout(timer);
-            }, []);
-
-            return (
-                <>
-                    <LoadingScreen isLoading={isLoading} />
-                    <AnimatedBackground />
-                    
-                    {!isLoading && (
-                        <div className="relative z-10 min-h-screen flex items-center justify-center p-6">
-                            <div className="text-center max-w-4xl mx-auto">
-                                
-                                {/* Status Badge */}
-                                <div className="inline-flex items-center space-x-2 glass-morphism rounded-full px-6 py-3 mb-8 animate-fadeIn">
-                                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                                    <span className="text-sm font-medium">Portfolio Under Development</span>
-                                </div>
-
-                                {/* Logo */}
-                                <div className="mb-8 animate-slideUp">
-                                    <div className="w-24 h-24 mx-auto gradient-primary rounded-3xl flex items-center justify-center mb-6 animate-float">
-                                        <i className="fas fa-rocket text-3xl text-white"></i>
-                                    </div>
-                                </div>
-
-                                {/* Main Title */}
-                                <div className="mb-12 animate-slideUp" style={{ animationDelay: '200ms' }}>
-                                    <h1 className="text-6xl md:text-8xl font-black mb-4">
-                                        Coming <span className="text-gradient">Soon</span>
-                                    </h1>
-                                    <h2 className="text-2xl md:text-3xl text-gray-300 font-light mb-6">
-                                        Something Amazing is on its way
-                                    </h2>
-                                    <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                                        Hi, I'm <strong className="text-white">Tarun</strong> and I'm crafting something extraordinary 
-                                        that will change how you experience digital portfolios.
-                                    </p>
-                                </div>
-
-                                {/* Countdown */}
-                                <CountdownTimer />
-
-                                {/* Email Subscription */}
-                                <EmailSubscription />
-
-                                {/* Social Links */}
-                                <SocialLinks />
-
-                                {/* Footer */}
-                                <div className="mt-16 text-center text-gray-500 text-sm animate-slideUp" style={{ animationDelay: '1400ms' }}>
-                                    <p>&copy; 2024 Tarun. Crafted with <i className="fas fa-heart text-red-500"></i> and dedication</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </>
-            );
-        };
-
-        // Render the App
-        ReactDOM.render(<App />, document.getElementById('root'));
+                // Animate sparks with Anime.js
+                anime({
+                    targets: spark,
+                    translateY: [0, -100],
+                    translateX: () => anime.random(-50, 50),
+                    opacity: [1, 0],
+                    scale: [1, 0.5],
+                    rotate: () => anime.random(-180, 180),
+                    duration: () => anime.random(1000, 3000),
+                    loop: true,
+                    direction: 'normal',
+                    easing: 'easeOutQuad',
+                    delay: () => anime.random(0, 2000)
+                });
+            }
+        }
+        
+        // Brutal entrance animation
+        function brutalEntrance() {
+            anime({
+                targets: '#dangerZone',
+                translateY: [200, 0],
+                rotateX: [45, 2],
+                opacity: [0, 1],
+                scale: [0.5, 1],
+                duration: 1200,
+                easing: 'easeOutBounce'
+            });
+        }
+        
+        // Menacing icon animation
+        function animateSkull() {
+            anime({
+                targets: '#skullIcon',
+                rotateZ: [0, 10, -10, 0],
+                scale: [1, 1.2, 1],
+                duration: 2000,
+                loop: true,
+                easing: 'easeInOutQuad'
+            });
+        }
+        
+        // Industrial text entrance
+        function animateText() {
+            anime({
+                targets: '#title',
+                opacity: [0, 1],
+                translateX: [-100, 0],
+                rotateZ: [-5, 0],
+                duration: 800,
+                delay: 600,
+                easing: 'easeOutQuad'
+            });
+            
+            anime({
+                targets: '#subtitle',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 600,
+                delay: 1000,
+                easing: 'easeOutQuad'
+            });
+        }
+        
+        // Aggressive form interactions
+        function setupFormInteractions() {
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            emailInput.addEventListener('focus', () => {
+                anime({
+                    targets: emailInput,
+                    scale: 1.02,
+                    rotateZ: [0, -1, 0],
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+            
+            emailInput.addEventListener('blur', () => {
+                anime({
+                    targets: emailInput,
+                    scale: 1,
+                    rotateZ: 0,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+            
+            submitBtn.addEventListener('mouseenter', () => {
+                anime({
+                    targets: submitBtn,
+                    scale: 1.05,
+                    rotateZ: [0, 2, 0],
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+            
+            submitBtn.addEventListener('mouseleave', () => {
+                anime({
+                    targets: submitBtn,
+                    scale: 1,
+                    rotateZ: 0,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+        }
+        
+        // Brutal form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.steel-input').value;
+            
+            // Explosive success animation
+            anime({
+                targets: '#dangerZone',
+                scale: [1, 1.1, 1],
+                rotateZ: [0, -3, 3, 0],
+                duration: 400,
+                easing: 'easeOutElastic(1, 0.6)',
+                complete: () => {
+                    alert(`⚡ EMAIL REGISTERED: ${email}\n🔥 I'LL NOTIFY YOU WHEN MY SITE IS READY!\n💀 THANKS FOR WAITING!`);
+                    event.target.reset();
+                }
+            });
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createSparks();
+            brutalEntrance();
+            animateSkull();
+            animateText();
+            setupFormInteractions();
+        });
+        
+        // Aggressive mouse interaction
+        document.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            const { innerWidth: width, innerHeight: height } = window;
+            
+            const xPercent = (x - width / 2) / width;
+            const yPercent = (y - height / 2) / height;
+            
+            anime({
+                targets: '#dangerZone',
+                rotateY: xPercent * 8,
+                rotateX: 2 - yPercent * 8,
+                duration: 800,
+                easing: 'easeOutQuad'
+            });
+        });
     </script>
-
 </body>
 </html>
