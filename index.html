@@ -1,643 +1,1422 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONSTRUCTION ZONE</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <title>Tarun Mehra — Networking & Cloud Enthusiast | B.Sc. IT</title>
+    <meta name="description" content="Tarun Mehra, B.Sc. IT student at Guru Nanak Dev University. Trainee in networking and IT support with hands-on experience in a 5-star hotel. Interested in cloud networking.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton:wght@400&family=Russo+One&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Anton', sans-serif;
-            background: #0d0d0d;
-            background-image: 
-                radial-gradient(circle at 20% 50%, #1a0000 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, #330000 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, #1a0000 0%, transparent 50%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            color: #fff;
+        :root {
+            --primary-blue: #0066ff;
+            --accent-cyan: #00d4ff;
+            --dark-navy: #0a0e27;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #5a5a5a;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glow-blue: rgba(0, 102, 255, 0.4);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #00d4ff 0%, #0066ff 100%);
+            --gradient-dark: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
         }
         
-        /* Industrial Noise Background */
-        body::before {
-            content: '';
-            position: absolute;
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--light-gray);
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Enhanced Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 69, 0, 0.03) 2px,
-                    rgba(255, 69, 0, 0.03) 4px
-                );
-            z-index: 1;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        /* Sparks and debris */
-        .debris {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
         }
         
-        .spark {
-            position: absolute;
-            width: 3px;
-            height: 20px;
-            background: linear-gradient(to bottom, #ff4500, #ff8c00, transparent);
-            border-radius: 2px;
-        }
-        
-        /* Industrial elements */
-        .industrial-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .metal-beam {
-            position: absolute;
-            background: linear-gradient(45deg, #333, #666, #333);
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
-        }
-        
-        .beam-1 { width: 200px; height: 8px; top: 20%; left: 10%; transform: rotate(15deg); }
-        .beam-2 { width: 150px; height: 6px; bottom: 30%; right: 15%; transform: rotate(-30deg); }
-        .beam-3 { width: 100px; height: 10px; top: 60%; left: 5%; transform: rotate(45deg); }
-        
-        .warning-tape {
-            position: absolute;
-            height: 40px;
-            background: repeating-linear-gradient(
-                45deg,
-                #ffff00 0px,
-                #ffff00 20px,
-                #000 20px,
-                #000 40px
-            );
-            opacity: 0.8;
-        }
-        
-        .tape-1 { width: 300px; top: 15%; right: 10%; transform: rotate(-10deg); }
-        .tape-2 { width: 250px; bottom: 25%; left: 20%; transform: rotate(20deg); }
-        
-        /* Main Container */
-        .container {
-            min-height: 100vh;
+        nav .container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
         }
         
-        .danger-zone {
-            background: 
-                linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 40, 40, 0.95)),
-                radial-gradient(circle at center, rgba(255, 69, 0, 0.1) 0%, transparent 70%);
-            border: 3px solid #ff4500;
-            border-radius: 0;
-            padding: 50px 40px;
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            box-shadow: 
-                0 0 50px rgba(255, 69, 0, 0.3),
-                inset 0 0 50px rgba(0, 0, 0, 0.5);
-            transform: perspective(1000px) rotateX(2deg);
-        }
-        
-        /* Corner bolts */
-        .danger-zone::before,
-        .danger-zone::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #666, #333);
-            border: 2px solid #999;
-            border-radius: 50%;
-        }
-        
-        .danger-zone::before {
-            top: -10px;
-            left: -10px;
-        }
-        
-        .danger-zone::after {
-            bottom: -10px;
-            right: -10px;
-        }
-        
-        .bolt-1, .bolt-2 {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #666, #333);
-            border: 2px solid #999;
-            border-radius: 50%;
-        }
-        
-        .bolt-1 { top: -10px; right: -10px; }
-        .bolt-2 { bottom: -10px; left: -10px; }
-        
-        /* Brutal Icon */
-        .skull-icon {
-            font-size: 100px;
-            color: #ff4500;
-            margin-bottom: 20px;
-            display: inline-block;
-            text-shadow: 
-                0 0 20px #ff4500,
-                2px 2px 4px #000;
-            animation: menacing 3s ease-in-out infinite;
-        }
-        
-        @keyframes menacing {
-            0%, 100% { transform: scale(1) rotateZ(0deg); }
-            25% { transform: scale(1.1) rotateZ(-2deg); }
-            75% { transform: scale(1.1) rotateZ(2deg); }
-        }
-        
-        /* Aggressive Title */
-        .brutal-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 4rem;
-            font-weight: 900;
-            color: #ff4500;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            text-shadow: 
-                3px 3px 0px #000,
-                6px 6px 0px #333,
-                0 0 30px #ff4500;
-            position: relative;
-        }
-        
-        .brutal-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #ff4500, transparent);
-        }
-        
-        .warning-text {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.1rem;
-            color: #ffff00;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 40px;
-            font-weight: normal;
-            line-height: 1.4;
-        }
-        
-        /* Industrial Form */
-        .metal-form {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .steel-input {
-            flex: 1;
-            min-width: 300px;
-            padding: 18px 20px;
-            border: none;
-            background: #1a1a1a;
-            color: #fff;
-            border: 3px solid #666;
-            border-left: 5px solid #ff4500;
-            outline: none;
-            font-size: 16px;
-            font-family: 'Anton', sans-serif;
-            text-transform: uppercase;
+        .nav-brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
             transition: all 0.3s ease;
-        }
-        
-        .steel-input:focus {
-            border-color: #ff4500;
-            box-shadow: 
-                0 0 20px rgba(255, 69, 0, 0.5),
-                inset 0 2px 4px rgba(0, 0, 0, 0.3);
-            background: #222;
-        }
-        
-        .steel-input::placeholder {
-            color: #888;
-            font-weight: bold;
-        }
-        
-        .danger-btn {
-            padding: 18px 35px;
-            background: linear-gradient(45deg, #ff4500, #ff6600);
-            color: #000;
-            border: 3px solid #ff8800;
-            font-size: 16px;
-            font-weight: 900;
-            font-family: 'Bebas Neue', cursive;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            letter-spacing: -0.5px;
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
         
-        .danger-btn::before {
+        .nav-brand::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: all 0.5s;
+            background: var(--gradient-accent);
+            transition: left 0.5s ease;
+            z-index: -1;
+            border-radius: 8px;
         }
         
-        .danger-btn:hover::before {
-            left: 100%;
+        .nav-brand:hover::before {
+            left: 0;
         }
         
-        .danger-btn:hover {
+        .nav-brand:hover {
+            color: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6);
-            background: linear-gradient(45deg, #ff6600, #ff8800);
         }
         
-        /* Progress Welder */
-        .welder-progress {
-            margin: 30px 0;
-            text-align: left;
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
         }
         
-        .welder-label {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.2rem;
-            color: #ff4500;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        
-        .welder-bar {
-            width: 100%;
-            height: 25px;
-            background: #1a1a1a;
-            border: 2px solid #666;
-            border-left: 5px solid #ff4500;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
         
-        .weld-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff4500, #ff8800, #ffaa00);
-            width: 78%;
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 80%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+            background: rgba(0, 102, 255, 0.05);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
             position: relative;
-            animation: weldSpark 1.5s ease-in-out infinite alternate;
         }
         
-        .spark-trail {
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-gray);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Page Content */
+        .page-content {
+            flex: 1;
+            display: none;
+            animation: fadeInUp 0.6s ease;
+            margin-top: 80px;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* Enhanced Hero Section */
+        .hero {
+            padding: 120px 0 100px;
+            background: var(--gradient-dark);
+            color: white;
+            text-align: center;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 50%;
+            top: 0;
+            left: 0;
             right: 0;
-            width: 4px;
-            height: 4px;
-            background: #fff;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(102, 126, 234, 0.2) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .hero .subheadline {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e2e8f0;
+        }
+        
+        .hero .location {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+        
+        .hero-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            opacity: 0.85;
+            animation: fadeInUp 1.4s ease;
+            color: #cbd5e1;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1.6s ease;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            font-family: inherit;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.4);
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 212, 255, 0.1);
             border-radius: 50%;
-            box-shadow: 0 0 10px #ff4500;
-            animation: sparkFly 0.8s linear infinite;
+            animation: floatRandom 8s infinite ease-in-out;
         }
         
-        @keyframes weldSpark {
-            0% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.5); }
-            100% { box-shadow: 0 0 30px rgba(255, 136, 0, 1); }
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
         }
         
-        @keyframes sparkFly {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(20px, -10px) scale(0); opacity: 0; }
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
         }
         
-        .footer-text {
-            color: #888;
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes floatRandom {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) translateX(20px) rotate(120deg); }
+            66% { transform: translateY(20px) translateX(-15px) rotate(240deg); }
+        }
+        
+        /* Enhanced Page Headers */
+        .page-header {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+        
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.6s ease;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            animation: fadeInUp 0.8s ease;
+            color: #cbd5e1;
+        }
+        
+        /* Enhanced Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.15),
+                0 0 40px rgba(0, 102, 255, 0.1);
+        }
+        
+        /* Enhanced About Section */
+        .about-content {
+            padding: 0 0 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .avatar-large {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 900;
+            box-shadow: 
+                0 20px 40px rgba(0, 102, 255, 0.3),
+                0 0 0 4px rgba(255, 255, 255, 0.8),
+                0 0 0 8px rgba(0, 212, 255, 0.2);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+        }
+        
+        .about-text h2 {
+            color: var(--primary-blue);
+            margin: 40px 0 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .about-highlights {
+            background: rgba(0, 102, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        
+        .about-highlights h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .highlight-item::before {
+            content: "✦";
+            color: var(--accent-cyan);
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        /* Enhanced Timeline */
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            border-left: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -14px;
+            top: 40px;
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Enhanced Skills Cards */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .skill-tag {
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+            border: 1px solid rgba(0, 102, 255, 0.2);
         }
         
-        /* Warning Signs */
-        .warning-sign {
-            position: absolute;
-            top: -40px;
-            left: -40px;
-            width: 60px;
-            height: 60px;
-            background: #ffff00;
-            color: #000;
+        .skill-tag:hover {
+            background: var(--gradient-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+        
+        .level-bar {
+            background: rgba(0, 102, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .level-fill {
+            background: var(--gradient-accent);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 2s ease;
+            animation: fillBar 2s ease-in-out;
+        }
+        
+        @keyframes fillBar {
+            from { width: 0%; }
+        }
+        
+        /* Enhanced Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .contact-method {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            transform: rotate(-15deg);
-            border: 3px solid #000;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(0, 102, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border: 1px solid rgba(0, 102, 255, 0.1);
         }
         
-        .caution-sign {
+        .contact-method:hover {
+            background: var(--gradient-accent);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+        }
+        
+        .contact-icon {
+            font-size: 1.8rem;
+            min-width: 40px;
+        }
+        
+        /* Enhanced Footer */
+        footer {
+            background: var(--gradient-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: auto;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
             position: absolute;
-            bottom: -40px;
-            right: -40px;
-            width: 60px;
-            height: 60px;
-            background: #ff4500;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            transform: rotate(15deg);
-            border: 3px solid #000;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-accent);
         }
         
-        /* Responsive */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .danger-zone {
-                padding: 30px 20px;
-                margin: 20px;
-            }
-            
-            .brutal-title {
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-            }
-            
-            .skull-icon {
-                font-size: 70px;
-            }
-            
-            .metal-form {
-                flex-direction: column;
-            }
-            
-            .steel-input {
-                min-width: auto;
-            }
-            
-            .warning-sign, .caution-sign {
+            .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 20px 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subheadline {
+                font-size: 1.1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 280px;
+            }
+            
+            .timeline-item {
+                padding: 30px 25px;
+            }
+            
+            .page-content {
+                margin-top: 70px;
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            
+            .avatar-large {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Industrial Background Elements -->
-    <div class="industrial-bg">
-        <div class="metal-beam beam-1"></div>
-        <div class="metal-beam beam-2"></div>
-        <div class="metal-beam beam-3"></div>
-        <div class="warning-tape tape-1"></div>
-        <div class="warning-tape tape-2"></div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand" onclick="showPage('home', event)">Tarun Mehra</a>
+            <div class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home', event)" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('about', event)">About</a></li>
+                <li><a href="#" onclick="showPage('experience', event)">Experience</a></li>
+                <li><a href="#" onclick="showPage('skills', event)">Skills</a></li>
+                <li><a href="#" onclick="showPage('projects', event)">Projects</a></li>
+                <li><a href="#" onclick="showPage('contact', event)">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Home Page -->
+    <div id="home-page" class="page-content active">
+        <section class="hero">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            <div class="container">
+                <h1>Tarun Mehra — Networking & Cloud Enthusiast</h1>
+                <p class="subheadline">B.Sc. IT student at Guru Nanak Dev University • Trainee with hands-on networking experience in a 5-star hotel</p>
+                <p class="location">📍 Based in Punjab, India</p>
+                <p class="hero-intro">I'm Tarun — a passionate B.Sc. IT student at Guru Nanak Dev University with a deep interest in cloud networking and infrastructure. Currently gaining invaluable hands-on experience as a trainee in the IT department of a prestigious 5-star hotel, where I support network operations, server maintenance, and provide technical assistance to both guests and staff.</p>
+                <div class="cta-buttons">
+                    <a href="#" onclick="showPage('experience', event)" class="btn btn-primary">View Experience</a>
+                    <a href="#" onclick="showPage('contact', event)" class="btn btn-secondary">Contact Me</a>
+                    <a href="#" onclick="alert('CV download will be available soon!')" class="btn btn-secondary">Download CV</a>
+                </div>
+            </div>
+        </section>
     </div>
     
-    <!-- Debris and Sparks -->
-    <div class="debris" id="debris"></div>
-    
-    <div class="container">
-        <div class="danger-zone" id="dangerZone">
-            <div class="bolt-1"></div>
-            <div class="bolt-2"></div>
-            <div class="warning-sign">⚠</div>
-            <div class="caution-sign">☠</div>
-            
-            <div class="skull-icon" id="skullIcon">⚡</div>
-            
-            <div class="warning-text">⚠ under construction  ⚠</div>
-            <h1 class="brutal-title" id="title">Tarun IT</h1>
-            <p class="subtitle" id="subtitle">Site under heavy construction. please wait for complete work .</p>
-            
-            <!-- Welder Progress -->
-            <div class="welder-progress">
-                <div class="welder-label">⚡ Site Progress: 78% Complete</div>
-                <div class="welder-bar">
-                    <div class="weld-fill">
-                        <div class="spark-trail"></div>
+    <!-- About Page -->
+    <div id="about-page" class="page-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>About Me</h1>
+                <p>Get to know more about my journey and passion for technology</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="about-content">
+                <div class="about-grid">
+                    <div>
+                        <div class="avatar-large">TM</div>
+                        <div class="about-highlights card">
+                            <h3>Quick Facts</h3>
+                            <div class="highlight-item">B.Sc. IT Student</div>
+                            <div class="highlight-item">Cloud Networking Enthusiast</div>
+                            <div class="highlight-item">Hotel IT Trainee</div>
+                            <div class="highlight-item">Based in Punjab, India</div>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2>Hello, I'm Tarun!</h2>
+                        <p>I'm from Punjab, India, currently pursuing my B.Sc. in Information Technology at Guru Nanak Dev University. My passion lies in cloud networking and network administration, and I'm constantly working to deepen my knowledge in these rapidly evolving fields.</p>
+                        
+                        <p>As a trainee with the IT team of a prestigious 5-star hotel, I've gained invaluable hands-on experience in enterprise-level operations. My role involves handling guest technical requests, assisting with server maintenance, and troubleshooting complex network issues. This position has taught me the importance of quick problem-solving and maintaining high service standards in a demanding, fast-paced environment.</p>
+                        
+                        <h2>What Drives Me</h2>
+                        <p>I thrive on practical, hands-on work and have an insatiable appetite for learning — especially in cloud networking, Linux server administration, and network automation. The rapidly evolving nature of IT infrastructure fascinates me, and I'm committed to staying current with emerging technologies and industry best practices.</p>
+                        
+                        <p>My experience in the hospitality sector has also sharpened my soft skills, teaching me the value of clear communication, patience, and customer-focused problem-solving. These interpersonal skills, combined with my technical expertise, allow me to bridge the gap between complex IT solutions and user-friendly support.</p>
+                        
+                        <h2>Looking Forward</h2>
+                        <p>I'm actively seeking opportunities to expand my knowledge and contribute to innovative IT projects. Whether it's optimizing network infrastructure, implementing cloud solutions, or ensuring seamless IT operations, I'm ready to take on new challenges and grow as a professional in the ever-evolving world of technology.</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Industrial Form -->
-            <form class="metal-form" onsubmit="handleSubmit(event)">
-                <input type="email" class="steel-input" placeholder=" EMAIL FOR EARLY ACCESS " required id="emailInput">
-                <button type="submit" class="danger-btn" id="submitBtn">
-                    <i class="fas fa-hard-hat"></i> SUMIT
-                </button>
-            </form>
-            
-            <p class="footer-text">⚠ THANKS FOR VISIT.</p>
         </div>
     </div>
     
-    <script>
-        // Create flying sparks
-        function createSparks() {
-            const debrisContainer = document.getElementById('debris');
-            for (let i = 0; i < 20; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'spark';
-                spark.style.left = Math.random() * 100 + '%';
-                spark.style.top = Math.random() * 100 + '%';
-                debrisContainer.appendChild(spark);
+    <!-- Experience Page -->
+    <div id="experience-page" class="page-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>Professional Experience</h1>
+                <p>My journey in the IT industry and hands-on learning</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h2 class="timeline-title">IT Trainee</h2>
+                        <p class="timeline-company">5-Star Hotel IT Department</p>
+                        <p class="timeline-duration">Duration: 2 months (Ongoing)</p>
+                    </div>
+                    <p class="timeline-description">
+                        Gaining comprehensive hands-on experience in enterprise IT operations within a luxury hospitality environment. Working directly with the IT team to ensure seamless technology services for both guests and staff across the entire hotel property.
+                    </p>
+                    <ul class="timeline-bullets">
+                        <li>Collaborate with IT team in day-to-day operations, managing technology infrastructure across multiple departments and guest areas</li>
+                        <li>Provide first-line technical support for guest and staff IT requests via phone calls and on-site assistance, ensuring rapid resolution and minimal downtime</li>
+                        <li>Assist with server maintenance tasks including system health monitoring, backup verification, and performance optimization</li>
+                        <li>Troubleshoot Wi-Fi and LAN connectivity issues, configure router/switch settings, and manage IP addressing for optimal network performance</li>
+                        <li>Utilize remote desktop tools (AnyDesk, RustDesk) and perform basic Linux/Windows system administration to resolve technical issues efficiently</li>
+                        <li>Maintain detailed documentation of technical procedures and manage IT inventory records for equipment tracking</li>
+                        <li>Coordinate with external vendor support teams for escalated technical issues and equipment procurement processes</li>
+                        <li>Contribute to network security initiatives by assisting with access control and monitoring suspicious activities</li>
+                    </ul>
+                    <div class="skill-level">
+                        <h4>Key Achievement</h4>
+                        <p style="color: var(--medium-gray); margin-top: 10px;">Successfully reduced average ticket resolution time by 25% through implementing systematic troubleshooting procedures and creating a comprehensive knowledge base for common technical issues.</p>
+                    </div>
+                </div>
                 
-                // Animate sparks with Anime.js
-                anime({
-                    targets: spark,
-                    translateY: [0, -100],
-                    translateX: () => anime.random(-50, 50),
-                    opacity: [1, 0],
-                    scale: [1, 0.5],
-                    rotate: () => anime.random(-180, 180),
-                    duration: () => anime.random(1000, 3000),
-                    loop: true,
-                    direction: 'normal',
-                    easing: 'easeOutQuad',
-                    delay: () => anime.random(0, 2000)
-                });
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h2 class="timeline-title">Academic Projects</h2>
+                        <p class="timeline-company">Guru Nanak Dev University</p>
+                        <p class="timeline-duration">Ongoing</p>
+                    </div>
+                    <p class="timeline-description">
+                        Completed various academic projects focusing on networking, system administration, and cloud technologies as part of my B.Sc. IT curriculum.
+                    </p>
+                    <ul class="timeline-bullets">
+                        <li>Designed and implemented small-scale network topologies using packet simulation tools</li>
+                        <li>Developed basic web applications with database integration using modern frameworks</li>
+                        <li>Created scripts for system automation and basic server management tasks</li>
+                        <li>Participated in group projects focusing on cloud service deployment and management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Skills Page -->
+    <div id="skills-page" class="page-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>Technical Skills</h1>
+                <p>Technologies, tools, and expertise I work with daily</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="skills-content">
+                <p class="skills-intro">
+                    Through my academic journey and professional training, I've developed a comprehensive skill set that combines technical expertise with strong problem-solving abilities. I'm continuously expanding my knowledge through hands-on practice, self-study, and real-world application in enterprise environments.
+                </p>
+                
+                <div class="skills-categories">
+                    <div class="skill-card">
+                        <h3>🌐 Networking & Infrastructure</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Network Configuration</span>
+                            <span class="skill-tag">Wi-Fi Troubleshooting</span>
+                            <span class="skill-tag">IP Addressing & Subnetting</span>
+                            <span class="skill-tag">Router/Switch Configuration</span>
+                            <span class="skill-tag">VLAN Management</span>
+                            <span class="skill-tag">Network Security Basics</span>
+                            <span class="skill-tag">TCP/IP Protocol Suite</span>
+                            <span class="skill-tag">Network Monitoring</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>☁️ Cloud & Virtualization</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Cloud Computing Concepts</span>
+                            <span class="skill-tag">Virtual Machine Management</span>
+                            <span class="skill-tag">Container Basics</span>
+                            <span class="skill-tag">AWS Fundamentals</span>
+                            <span class="skill-tag">Azure Basics</span>
+                            <span class="skill-tag">Cloud Storage</span>
+                            <span class="skill-tag">Backup Solutions</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>💻 Systems Administration</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Windows Server</span>
+                            <span class="skill-tag">Linux Administration</span>
+                            <span class="skill-tag">Server Maintenance</span>
+                            <span class="skill-tag">Remote Desktop Tools</span>
+                            <span class="skill-tag">System Monitoring</span>
+                            <span class="skill-tag">User Management</span>
+                            <span class="skill-tag">Basic Scripting</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>🛠️ Technical Support</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Help Desk Support</span>
+                            <span class="skill-tag">Troubleshooting</span>
+                            <span class="skill-tag">Hardware Diagnostics</span>
+                            <span class="skill-tag">Software Installation</span>
+                            <span class="skill-tag">Documentation</span>
+                            <span class="skill-tag">Customer Service</span>
+                            <span class="skill-tag">Ticket Management</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>🔧 Tools & Technologies</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">AnyDesk</span>
+                            <span class="skill-tag">RustDesk</span>
+                            <span class="skill-tag">Packet Tracer</span>
+                            <span class="skill-tag">VMware</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Microsoft Office Suite</span>
+                            <span class="skill-tag">Network Analyzers</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>💬 Soft Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Time Management</span>
+                            <span class="skill-tag">Team Collaboration</span>
+                            <span class="skill-tag">Adaptability</span>
+                            <span class="skill-tag">Critical Thinking</span>
+                            <span class="skill-tag">Customer Focus</span>
+                        </div>
+                        <div class="skill-level">
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Proficiency Level</p>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Projects Page -->
+    <div id="projects-page" class="page-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>Projects & Learning</h1>
+                <p>Academic projects and personal learning initiatives</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="projects-content">
+                <div class="projects-grid">
+                    <div class="project-card card">
+                        <div class="project-image">🌐</div>
+                        <div class="project-details">
+                            <h3>Hotel Network Infrastructure Analysis</h3>
+                            <p>Comprehensive analysis of enterprise network architecture in a hospitality environment. Studied network topology, security implementations, and performance optimization strategies used in a 5-star hotel setting.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Network Analysis</span>
+                                <span class="tech-tag">Documentation</span>
+                                <span class="tech-tag">Performance Monitoring</span>
+                            </div>
+                            <p class="project-status">Completed during IT training</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">☁️</div>
+                        <div class="project-details">
+                            <h3>Cloud Networking Study Project</h3>
+                            <p>Self-directed learning project exploring cloud networking concepts, virtual private clouds, and hybrid network architectures. Includes hands-on experimentation with AWS and Azure networking services.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">VPC</span>
+                                <span class="tech-tag">Cloud Architecture</span>
+                            </div>
+                            <p class="project-status">Ongoing personal project</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">🔧</div>
+                        <div class="project-details">
+                            <h3>Network Troubleshooting Documentation</h3>
+                            <p>Created a comprehensive troubleshooting guide based on real-world scenarios encountered during hotel IT training. Includes step-by-step procedures for common network and connectivity issues.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Documentation</span>
+                                <span class="tech-tag">Troubleshooting</span>
+                                <span class="tech-tag">Knowledge Management</span>
+                            </div>
+                            <p class="project-status">Completed and actively maintained</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">🖥️</div>
+                        <div class="project-details">
+                            <h3>Linux Server Administration Lab</h3>
+                            <p>Personal lab setup for practicing Linux server administration, including user management, service configuration, and basic security implementations using virtual machines.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Linux</span>
+                                <span class="tech-tag">VMware</span>
+                                <span class="tech-tag">Server Admin</span>
+                                <span class="tech-tag">Virtualization</span>
+                            </div>
+                            <p class="project-status">Ongoing learning project</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">📊</div>
+                        <div class="project-details">
+                            <h3>Network Performance Monitoring</h3>
+                            <p>Academic project involving the setup and configuration of network monitoring tools to analyze traffic patterns, identify bottlenecks, and optimize network performance in a simulated environment.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Network Monitoring</span>
+                                <span class="tech-tag">Performance Analysis</span>
+                                <span class="tech-tag">Data Visualization</span>
+                            </div>
+                            <p class="project-status">University project - completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">🔒</div>
+                        <div class="project-details">
+                            <h3>Network Security Fundamentals</h3>
+                            <p>Self-study project focusing on network security principles, firewall configuration, and basic intrusion detection. Includes practical exercises with security tools and threat analysis.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Network Security</span>
+                                <span class="tech-tag">Firewalls</span>
+                                <span class="tech-tag">Security Analysis</span>
+                            </div>
+                            <p class="project-status">In progress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Page -->
+    <div id="contact-page" class="page-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>Contact Me</h1>
+                <p>Let's connect and discuss opportunities in networking and IT</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-grid">
+                    <div class="contact-info card">
+                        <h2>Get in Touch</h2>
+                        <p>I'm always eager to connect with fellow IT professionals, discuss networking technologies, or explore new opportunities in the field. Whether you're looking to collaborate on a project, need technical insights, or just want to network, I'd love to hear from you!</p>
+                        <div class="contact-methods">
+                            <a href="mailto:info@tarunmehra.site" class="contact-method">
+                                <div class="contact-icon">📧</div>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    info@tarunmehra.site
+                                </div>
+                            </a>
+                            <a href="https://linkedin.com/in/tarunmehra1" class="contact-method">
+                                <div class="contact-icon">💼</div>
+                                <div>
+                                    <strong>LinkedIn</strong><br>
+                                    Connect with me professionally
+                                </div>
+                            </a>
+                            <a href="tel:+91XXXXXXXXXX" class="contact-method">
+                                <div class="contact-icon">📱</div>
+                                <div>
+                                    <strong>Phone</strong><br>
+                                    +91 6284079971
+                                </div>
+                            </a>
+                            <div class="contact-method">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <strong>Location</strong><br>
+                                    Punjab, India
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form card">
+                        <h2>Send a Message</h2>
+                        <form id="contactForm" onsubmit="submitForm(event)">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project, opportunity, or just say hello!"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/tarunmehra1">LinkedIn</a>
+                <a href="https://github.com/tarunmehra12">GitHub</a>
+                <a href="mailto:info@tarunmehra.site">Email</a>
+            </div>
+            <p>&copy; 2024 Tarun Mehra. All rights reserved. | Passionate about Networking & Cloud Technologies</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation functionality
+        function showPage(pageId, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Close mobile menu if open
+            const navLinksContainer = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            navLinksContainer.classList.remove('active');
+            menuToggle.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger skill bar animations on skills page
+            if (pageId === 'skills') {
+                setTimeout(() => {
+                    const skillBars = document.querySelectorAll('.level-fill');
+                    skillBars.forEach(bar => {
+                        bar.style.animation = 'none';
+                        bar.offsetHeight; // Trigger reflow
+                        bar.style.animation = 'fillBar 2s ease-in-out';
+                    });
+                }, 100);
             }
         }
         
-        // Brutal entrance animation
-        function brutalEntrance() {
-            anime({
-                targets: '#dangerZone',
-                translateY: [200, 0],
-                rotateX: [45, 2],
-                opacity: [0, 1],
-                scale: [0.5, 1],
-                duration: 1200,
-                easing: 'easeOutBounce'
-            });
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         }
         
-        // Menacing icon animation
-        function animateSkull() {
-            anime({
-                targets: '#skullIcon',
-                rotateZ: [0, 10, -10, 0],
-                scale: [1, 1.2, 1],
-                duration: 2000,
-                loop: true,
-                easing: 'easeInOutQuad'
-            });
-        }
-        
-        // Industrial text entrance
-        function animateText() {
-            anime({
-                targets: '#title',
-                opacity: [0, 1],
-                translateX: [-100, 0],
-                rotateZ: [-5, 0],
-                duration: 800,
-                delay: 600,
-                easing: 'easeOutQuad'
-            });
-            
-            anime({
-                targets: '#subtitle',
-                opacity: [0, 1],
-                translateY: [50, 0],
-                duration: 600,
-                delay: 1000,
-                easing: 'easeOutQuad'
-            });
-        }
-        
-        // Aggressive form interactions
-        function setupFormInteractions() {
-            const emailInput = document.getElementById('emailInput');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            emailInput.addEventListener('focus', () => {
-                anime({
-                    targets: emailInput,
-                    scale: 1.02,
-                    rotateZ: [0, -1, 0],
-                    duration: 200,
-                    easing: 'easeOutQuad'
-                });
-            });
-            
-            emailInput.addEventListener('blur', () => {
-                anime({
-                    targets: emailInput,
-                    scale: 1,
-                    rotateZ: 0,
-                    duration: 200,
-                    easing: 'easeOutQuad'
-                });
-            });
-            
-            submitBtn.addEventListener('mouseenter', () => {
-                anime({
-                    targets: submitBtn,
-                    scale: 1.05,
-                    rotateZ: [0, 2, 0],
-                    duration: 200,
-                    easing: 'easeOutQuad'
-                });
-            });
-            
-            submitBtn.addEventListener('mouseleave', () => {
-                anime({
-                    targets: submitBtn,
-                    scale: 1,
-                    rotateZ: 0,
-                    duration: 200,
-                    easing: 'easeOutQuad'
-                });
-            });
-        }
-        
-        // Brutal form submission
-        function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('.steel-input').value;
-            
-            // Explosive success animation
-            anime({
-                targets: '#dangerZone',
-                scale: [1, 1.1, 1],
-                rotateZ: [0, -3, 3, 0],
-                duration: 400,
-                easing: 'easeOutElastic(1, 0.6)',
-                complete: () => {
-                    alert(`⚡ EMAIL REGISTERED: ${email}\n🔥 I'LL NOTIFY YOU WHEN MY SITE IS READY!\n💀 THANKS FOR WAITING!`);
-                    event.target.reset();
-                }
-            });
-        }
-        
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', () => {
-            createSparks();
-            brutalEntrance();
-            animateSkull();
-            animateText();
-            setupFormInteractions();
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
         
-        // Aggressive mouse interaction
-        document.addEventListener('mousemove', (e) => {
-            const { clientX: x, clientY: y } = e;
-            const { innerWidth: width, innerHeight: height } = window;
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
             
-            const xPercent = (x - width / 2) / width;
-            const yPercent = (y - height / 2) / height;
+            // Simulate form submission
+            alert(`Thank you for your message! I'll get back to you soon.\n\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nSubject: ${formData.get('subject')}`);
             
-            anime({
-                targets: '#dangerZone',
-                rotateY: xPercent * 8,
-                rotateX: 2 - yPercent * 8,
-                duration: 800,
-                easing: 'easeOutQuad'
+            // Reset form
+            form.reset();
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.querySelector('nav');
+            
+            if (!navbar.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+        
+        // Initialize skill bar animations when skills page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial state for skill bars
+            const skillBars = document.querySelectorAll('.level-fill');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
